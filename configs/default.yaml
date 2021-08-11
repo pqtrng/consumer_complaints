@@ -1,0 +1,18 @@
+---
+seed: 45
+
+data:
+  # All parameters related to the dataset
+    path: 'data/processed'
+
+
+model:
+  # All parameters related to the model
+
+trainer:
+  # All parameters to be passed at the Trainer object
+    gpus: 1
+
+defaults:
+    - override hydra/job_logging: colorlog
+    - override hydra/hydra_logging: colorlog

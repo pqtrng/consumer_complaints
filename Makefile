@@ -3,6 +3,7 @@
 PROJECT_DIR := $(shell dirname $(realpath $(lastword $(MAKEFILE_LIST))))
 PROJECT_NAME = consumer_complaints
 PYTHON_INTERPRETER = python3
+DATASET_URL = "https://files.consumerfinance.gov/ccdb/complaints.csv.zip"
 
 ifeq (,$(shell which conda))
 HAS_CONDA=False
@@ -48,6 +49,7 @@ setup-git: install-pre-commit
 	git config branch.autosetuprebase always
 
 install-deps:
+	pip install -U pip setuptools wheel
 	pip install -r requirements/requirements.txt
 	pip install -r requirements/test-requirements.txt
 
@@ -65,3 +67,8 @@ test: develop lint
 	@echo "Running Python tests"
 	py.test .
 	@echo ""
+
+data: clean
+	$(PYTHON_INTERPRETER) src/data/download.py $(DATASET_URL) data/raw/complaints.csv.zip
+	$(PYTHON_INTERPRETER) src/data/extract.py raw raw
+	find . -type f -name "*.zip" -delete

@@ -1,4 +1,10 @@
+
+-e .
+hydra-core
+hydra_colorlog
+
 pandas
+python-dotenv
 tensorboard_plugin_fairness_indicators
 tensorflow
 tensorflow_hub
