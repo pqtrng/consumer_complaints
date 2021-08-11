@@ -1,0 +1,7 @@
+pandas
+tensorboard_plugin_fairness_indicators
+tensorflow
+tensorflow_hub
+tensorflow_privacy
+tfx
+witwidget
